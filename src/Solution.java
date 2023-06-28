@@ -35,21 +35,70 @@ public class Solution {
             int complement = target - nums[i];
             System.out.println(complement);
             System.out.println(map.containsKey(complement));
-            
+
             if (map.containsKey(complement)) {
-                System.out.println("hh  "+map.get(complement));
-                return new int[]{map.get(complement), i};
+                System.out.println("hh  " + map.get(complement));
+                return new int[] { map.get(complement), i };
             }
-            System.out.println("kk  "+nums[i]+"--"+i);
-            
+            System.out.println("kk  " + nums[i] + "--" + i);
+
             map.put(nums[i], i);
         }
 
-        System.out.println("return  "+new int[]{});
+        System.out.println("return  " + new int[] {});
 
-        return new int[]{};
+        return new int[] {};
     }
 
+    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode dummy = new ListNode(0);
+        ListNode curr = dummy;
+        int carry = 0;
+
+        while (l1 != null || l2 != null || carry != 0) {
+            int val1 = (l1 != null) ? l1.val : 0;
+            int val2 = (l2 != null) ? l2.val : 0;
+            System.out.println(val1+"--"+val2);
+            int sum = val1 + val2 + carry;
+            carry = sum / 10;
+            int remainder = sum % 10;
+            System.out.println(carry+"++"+remainder);
+
+            curr.next = new ListNode(remainder);
+            curr = curr.next;
+
+            if (l1 != null)
+                l1 = l1.next;
+
+            if (l2 != null)
+                l2 = l2.next;
+        }
+
+        return dummy.next;
+
+    }
+
+    public static class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode() {
+        }
+
+        public ListNode(int val) {
+            this.val = val;
+        }
+
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
+
+    }
+
+    /**
+     * @param args
+     */
     public static void main(String[] args) {
         // max profit sum
         // int[] prices = { 1,3,7,5,10,3};
@@ -58,11 +107,27 @@ public class Solution {
         // System.out.println("Maximum profit: " + maxProfit); // Output: 8
 
         // two sum problem
-        int[] nums = {2,7,9,10,11};
-        int target = 13;
-        int[] result = twoSum(nums, target);
-  
-        System.out.println("Output: [" + result[0] + ", " + result[1] + "]");
+        // int[] nums = {2,7,9,10,11};
+        // int target = 13;
+        // int[] result = twoSum(nums, target);
+
+        // System.out.println("Output: [" + result[0] + ", " + result[1] + "]");
+
+        // two sum
+        ListNode l1 = new ListNode(2);
+        l1.next = new ListNode(4);
+        l1.next.next = new ListNode(3);
+
+        ListNode l2 = new ListNode(5);
+        l2.next = new ListNode(6);
+        l2.next.next = new ListNode(4);
+
+       
+        ListNode result = addTwoNumbers(l1, l2);
+        while (result != null) {
+            System.out.print(result.val + " ");
+            result = result.next;
+        }
 
     }
 
