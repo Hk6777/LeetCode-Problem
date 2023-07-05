@@ -58,11 +58,11 @@ public class Solution {
         while (l1 != null || l2 != null || carry != 0) {
             int val1 = (l1 != null) ? l1.val : 0;
             int val2 = (l2 != null) ? l2.val : 0;
-            System.out.println(val1+"--"+val2);
+            System.out.println(val1 + "--" + val2);
             int sum = val1 + val2 + carry;
             carry = sum / 10;
             int remainder = sum % 10;
-            System.out.println(carry+"++"+remainder);
+            System.out.println(carry + "++" + remainder);
 
             curr.next = new ListNode(remainder);
             curr = curr.next;
@@ -96,6 +96,35 @@ public class Solution {
 
     }
 
+    // palindron numbner
+    public static boolean isPalindrome(int x) {
+
+        int x2 = reverse(x);
+
+        if (x == x2) {
+            return true;
+        }
+
+        return false;
+
+    }
+
+    public static int reverse(int n) {
+
+        int rev = 0;
+        int rem;
+        while (n > 0) {
+
+            rem = n % 10;
+            
+            rev = (rev * 10) + rem;
+            n = n / 10;
+            System.out.println("rem="+rem+" rev="+rev+" n="+n);
+
+        }
+        return rev;
+    }
+
     /**
      * @param args
      */
@@ -111,24 +140,27 @@ public class Solution {
         // int target = 13;
         // int[] result = twoSum(nums, target);
 
-        // System.out.println("Output: [" + result[0] + ", " + result[1] + "]");
+        // System.out.println("Two Sum Output: [" + result[0] + ", " + result[1] + "]");
 
         // two sum
-        ListNode l1 = new ListNode(2);
-        l1.next = new ListNode(4);
-        l1.next.next = new ListNode(3);
+        // ListNode l1 = new ListNode(2);
+        // l1.next = new ListNode(4);
+        // l1.next.next = new ListNode(3);
 
-        ListNode l2 = new ListNode(5);
-        l2.next = new ListNode(6);
-        l2.next.next = new ListNode(4);
+        // ListNode l2 = new ListNode(5);
+        // l2.next = new ListNode(6);
+        // l2.next.next = new ListNode(4);
 
-       
-        ListNode result = addTwoNumbers(l1, l2);
-        while (result != null) {
-            System.out.print(result.val + " ");
-            result = result.next;
-        }
+        // ListNode result = addTwoNumbers(l1, l2);
+        // while (result != null) {
+        // System.out.print(result.val + " ");
+        // result = result.next;
+        // }
 
+        // palindron number
+
+        boolean presult = isPalindrome(2345);
+        System.out.println(presult);
     }
 
 }
