@@ -116,13 +116,52 @@ public class Solution {
         while (n > 0) {
 
             rem = n % 10;
-            
+
             rev = (rev * 10) + rem;
             n = n / 10;
-            System.out.println("rem="+rem+" rev="+rev+" n="+n);
+            System.out.println("rem=" + rem + " rev=" + rev + " n=" + n);
 
         }
         return rev;
+    }
+
+    // Longest Common Prefix
+    public static String longestCommonPrefix(String[] strs) {
+
+        if(strs == null && strs.length == 0 ){
+            return "";
+        }
+
+        String shortest = strs[0];
+        System.out.println(shortest);
+
+        for(String str:strs){
+
+            if(str.length() < shortest.length()){
+
+                shortest = str;
+            }
+        }
+        System.out.println(shortest);
+
+        for(int i =0; i< shortest.length();i++){
+
+            char c = shortest.charAt(i);
+            System.out.println(c);
+
+            for(String str : strs){
+
+                System.out.println("="+str.charAt(i));
+
+                if(str.charAt(i) != c){
+
+                    return shortest.substring(0, i);
+
+                }
+            }
+
+        }
+        return shortest;
     }
 
     /**
@@ -158,9 +197,12 @@ public class Solution {
         // }
 
         // palindron number
+        // boolean presult = isPalindrome(2345);
+        // System.out.println(presult);
 
-        boolean presult = isPalindrome(2345);
-        System.out.println(presult);
+        // ongest common prefix
+        // String[] strs1 = { "flower", "flow", "flight" };
+        // System.out.println(longestCommonPrefix(strs1));
     }
 
 }
