@@ -1,6 +1,7 @@
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
 
 // Harshil Kachhadiya
 
@@ -128,32 +129,32 @@ public class Solution {
     // Longest Common Prefix
     public static String longestCommonPrefix(String[] strs) {
 
-        if(strs == null && strs.length == 0 ){
+        if (strs == null && strs.length == 0) {
             return "";
         }
 
         String shortest = strs[0];
         System.out.println(shortest);
 
-        for(String str:strs){
+        for (String str : strs) {
 
-            if(str.length() < shortest.length()){
+            if (str.length() < shortest.length()) {
 
                 shortest = str;
             }
         }
         System.out.println(shortest);
 
-        for(int i =0; i< shortest.length();i++){
+        for (int i = 0; i < shortest.length(); i++) {
 
             char c = shortest.charAt(i);
             System.out.println(c);
 
-            for(String str : strs){
+            for (String str : strs) {
 
-                System.out.println("="+str.charAt(i));
+                System.out.println("=" + str.charAt(i));
 
-                if(str.charAt(i) != c){
+                if (str.charAt(i) != c) {
 
                     return shortest.substring(0, i);
 
@@ -164,17 +165,50 @@ public class Solution {
         return shortest;
     }
 
+    // valid parentheses
+    public static boolean isValid(String s) {
+
+        Stack<Character> stack = new Stack<>();
+
+        for (char c : s.toCharArray()) {
+
+            if (c == '(' || c == '[' || c == '{') {
+
+                stack.push(c);
+
+            } else if (c == ')' && !stack.empty() && stack.peek() == '(') {
+
+                stack.pop();
+
+            } else if (c == '}' && !stack.empty() && stack.peek() == '{') {
+
+                stack.pop();
+
+            } else if (c == ']' && !stack.empty() && stack.peek() == '[') {
+                stack.pop();
+
+            } else {
+                return false;
+            }
+
+        }
+        return stack.isEmpty();
+
+    }
+
     /**
      * @param args
      */
     public static void main(String[] args) {
         // max profit sum
+        // System.out.println("-- MAX PROFIT SUM");
         // int[] prices = { 1,3,7,5,10,3};
         // int fee = 3;
         // int maxProfit = maxProfit(prices, fee);
         // System.out.println("Maximum profit: " + maxProfit); // Output: 8
 
         // two sum problem
+        // System.out.println("--TWO SUM PROBLEM");
         // int[] nums = {2,7,9,10,11};
         // int target = 13;
         // int[] result = twoSum(nums, target);
@@ -182,6 +216,7 @@ public class Solution {
         // System.out.println("Two Sum Output: [" + result[0] + ", " + result[1] + "]");
 
         // two sum
+        // System.out.println("--TWO SUM");
         // ListNode l1 = new ListNode(2);
         // l1.next = new ListNode(4);
         // l1.next.next = new ListNode(3);
@@ -197,12 +232,18 @@ public class Solution {
         // }
 
         // palindron number
+        // System.out.println("--PALINDRON NUMBER");
         // boolean presult = isPalindrome(2345);
         // System.out.println(presult);
 
         // ongest common prefix
         // String[] strs1 = { "flower", "flow", "flight" };
         // System.out.println(longestCommonPrefix(strs1));
+
+        //// valid parentheses
+        System.out.println("--VALID PARENTHESES");
+            String s = "{}()[]";
+            System.out.println(isValid(s));
     }
 
 }
